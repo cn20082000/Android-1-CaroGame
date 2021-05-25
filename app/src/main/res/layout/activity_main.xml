@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
+    android:id="@+id/v_main"
     tools:context=".Activities.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -74,7 +75,7 @@
         app:layout_constraintTop_toBottomOf="@id/tb_main"
         android:padding="20dp"
 
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_dev_tool"

@@ -11,6 +11,7 @@ import com.example.carogame.R;
 import com.example.carogame.Utilities.CaroSocket;
 import com.example.carogame.Utilities.Constants;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private TextInputLayout edtName;
     private MaterialButton btnStart;
     private EditText edtURL;
+    private View vMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         edtName = findViewById(R.id.edt_name_main);
         btnStart = findViewById(R.id.btn_start_main);
         edtURL = findViewById(R.id.edt_url);
+        vMain = findViewById(R.id.v_main);
 
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,10 +43,15 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 //                CaroSocket.init();
-
-                Intent intent = new Intent(MainActivity.this, RoomActivity.class);
-                intent.putExtra("name", name);
-                startActivity(intent);
+                if (name.equals("")) {
+                    Snackbar snackbar = Snackbar
+                            .make(vMain, "Bạn cần điền tên để tiếp tục", Snackbar.LENGTH_SHORT);
+                    snackbar.show();
+                } else {
+                    Intent intent = new Intent(MainActivity.this, RoomActivity.class);
+                    intent.putExtra("name", name);
+                    startActivity(intent);
+                }
             }
         });
     }
